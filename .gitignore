@@ -1,0 +1,5 @@
+# ROS 2 build és telepített fájlok
+build/
+install/
+log/
+.colcon/
