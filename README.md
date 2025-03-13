@@ -5,6 +5,7 @@ Ez a projekt egy egyszerű ROS 2 csomag (keyboard_control), amely lehetővé tes
 ## Fájlok
 - **keyboard_publisher.py**: Figyeli a billentyűleütéseket, és a megfelelő vezérlési parancsokat elküldi a 'cmd_vel' témára.
 - **command_subscriber.py**: Feliratkozik a 'cmd_vel' témára, és kiírja a kapott vezérlési parancsokat.
+- **launch/keyboard_control_launch.py**: Egyszerre indítja el a két node-ot külön terminálablakban.
 
 ## Telepítés
 1. Készítsd el a ROS 2 munkakörnyezetet:
@@ -23,17 +24,31 @@ Ez a projekt egy egyszerű ROS 2 csomag (keyboard_control), amely lehetővé tes
    ```bash
    colcon build --packages-select keyboard_control
    ```
-5. Forrásold a telepítési fájlt:
-   ```bash
-   source install/setup.bash
+   <details>
+   <summary> Don't forget to source before ROS commands.</summary>
+
+   ``` bash
+   source ~/ros2_ws/install/setup.bash
    ```
+</details>
 
 ## Használat
 1. Indítsd el a billentyűzetes vezérlő node-ot:
    ```bash
-   ros2 run keyboard_control keyboard_publisher.py
+   ros2 launch keyboard_control keyboard_control_launch.py
    ```
-2. Indítsd el a vezérlési parancsokat figyelő node-ot:
-   ```bash
-   ros2 run keyboard_control command_subscriber.py
-   ```
+
+   ## Program működése
+
+Az alábbi diagram szemlélteti a billentyűzetes robotvezérlés működését:
+
+```mermaid
+flowchart TD
+    A[keyboard_publisher] -->|parancsokat küld| B((commands téma))
+    B -->|parancsokat fogad| C[command_subscriber]
+    subgraph ROS 2 rendszer
+        A
+        B
+        C
+    end
+
