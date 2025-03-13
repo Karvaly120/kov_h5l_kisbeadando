@@ -40,17 +40,21 @@ Ez a projekt egy egyszerű ROS 2 csomag (keyboard_control), amely lehetővé tes
 
    ## Program működése
 
+## Graph
+
 Az alábbi diagram szemlélteti a billentyűzetes robotvezérlés működését:
 
 ```mermaid
-flowchart TD
-    A[keyboard_publisher] -->|parancsokat küld| B((commands téma))
-    B -->|parancsokat fogad| C[command_subscriber]
-    subgraph ROS 2 rendszer
-        A
-        B
-        C
-    end
+graph LR;
+
+pub([ /keyboard_publisher]):::red --> cmd_vel[ /cmd_vel<br/>std_msgs/String]:::light
+cmd_vel --> sub([ /command_subscriber]):::red
+
+classDef light fill:#34aec5,stroke:#152742,stroke-width:2px,color:#152742  
+classDef dark fill:#152742,stroke:#34aec5,stroke-width:2px,color:#34aec5
+classDef white fill:#ffffff,stroke:#152742,stroke-width:2px,color:#152742
+classDef red fill:#ef4638,stroke:#152742,stroke-width:2px,color:#fff
+```
 
 
 ![](img/mukodes.png)
