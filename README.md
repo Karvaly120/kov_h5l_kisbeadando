@@ -13,7 +13,7 @@ Ez a projekt egy egyszerű ROS 2 csomag (keyboard_control), amely lehetővé tes
    ```
 2. Klónozd a projektet vagy helyezd a forráskódot a `src` könyvtárba.
    ```bash
-      git clone https://github.com/Karvaly120/kov_h5l_kisbeadando
+   git clone https://github.com/Karvaly120/kov_h5l_kisbeadando
    ```   
 3. Lépj vissza a munkakönyvtárba:
    ```bash
