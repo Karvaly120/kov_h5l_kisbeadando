@@ -7,20 +7,17 @@ class CommandSubscriber(Node):
         super().__init__('command_subscriber')
         self.subscription = self.create_subscription(
             String,
-            'commands',
+            'cmd_vel',
             self.listener_callback,
             10)
-        self.subscription
+        self.subscription  # prevent unused variable warning
+        self.get_logger().info('Várakozás parancsokra...')
 
     def listener_callback(self, msg):
-        commands = {
-            'w': 'Előre',
-            'a': 'Balra',
-            's': 'Hátra',
-            'd': 'Jobbra'
-        }
-        self.get_logger().info(f'Megkapott parancs: {commands.get(msg.data, "Ismeretlen")}')
-        
+        directions = {'w': 'Előre megy', 's': 'Hátra megy', 'a': 'Balra fordul', 'd': 'Jobbra fordul'}
+        direction = directions.get(msg.data, 'Ismeretlen parancs')
+        self.get_logger().info(f'Megkapott parancs: {msg.data} -> {direction}')
+
 def main(args=None):
     rclpy.init(args=args)
     node = CommandSubscriber()

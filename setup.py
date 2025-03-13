@@ -10,6 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/keyboard_control/launch', ['launch/keyboard_control_launch.py'])
     ],
     install_requires=['setuptools'],
     zip_safe=True,

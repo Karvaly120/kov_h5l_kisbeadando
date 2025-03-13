@@ -5,7 +5,7 @@ from std_msgs.msg import String
 class KeyboardPublisher(Node):
     def __init__(self):
         super().__init__('keyboard_publisher')
-        self.publisher_ = self.create_publisher(String, 'commands', 10)
+        self.publisher_ = self.create_publisher(String, 'cmd_vel', 10)
         self.get_logger().info('Billentyűzetfigyelő elindult. Használj W, A, S, D billentyűket!')
 
     def publish_command(self, key):
