@@ -52,3 +52,5 @@ flowchart TD
         C
     end
 
+
+![](img/mukodes.png)
